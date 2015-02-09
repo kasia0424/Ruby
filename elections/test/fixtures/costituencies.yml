@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  entitled: 1
+  invalid_votes: 1
+  valid_votes: 1
+  given_cards: 1
+  empty_cards: 1
+  multiple_choice: 1
+  other_invalid: 1
+  voivodeship: 
+
+two:
+  entitled: 1
+  invalid_votes: 1
+  valid_votes: 1
+  given_cards: 1
+  empty_cards: 1
+  multiple_choice: 1
+  other_invalid: 1
+  voivodeship: 

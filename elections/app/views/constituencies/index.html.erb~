@@ -1,0 +1,41 @@
+<h1>Listing constituencies</h1>
+
+<table>
+  <tr>
+    <th>Voivodeship</th>
+    <th>Id</th>
+    <th>Entitled</th>
+    <th>Invalid votes</th>
+    <th>Valid votes</th>
+    <th>Given cards</th>
+    <th>Empty cards</th>
+    <th>Multiple choice</th>
+    <th>Other invalid</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @constituencies.each do |constituency| %>
+  <tr>
+    <td><%= constituency.voivodeship.name %></td>
+    <td><%= constituency.id %></td>
+    <td><%= constituency.entitled %></td>
+    <td><%= constituency.invalid_votes %></td>
+    <td><%= constituency.valid_votes %></td>
+    <td><%= constituency.given_cards %></td>
+    <td><%= constituency.empty_cards %></td>
+    <td><%= constituency.multiple_choice %></td>
+    <td><%= constituency.other_invalid %></td>
+    <td><%#= link_to 'Results', votes_listconsti_path %></td>
+    <td><%= link_to 'Show', constituency_path(constituency) %></td>
+    <td><%= link_to 'Edit', edit_constituency_path(constituency) %></td>
+    <td><%= link_to 'Destroy', constituency, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Constituency', new_constituency_path %>

@@ -1,0 +1,26 @@
+<%= render 'shared/topnav' %>
+<h1>Listing voivodeships</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Mandates</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @voivodeships.each do |voivodeship| %>
+  <tr>
+    <td><%= voivodeship.name %></td>
+    <td><%= voivodeship.mandates %></td>
+    <td><%= link_to 'Show', voivodeship %></td>
+    <td><%= link_to 'Edit', edit_voivodeship_path(voivodeship) %></td>
+    <td><%= link_to 'Destroy', voivodeship, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Voivodeship', new_voivodeship_path %>

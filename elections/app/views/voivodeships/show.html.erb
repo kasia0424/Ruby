@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Voivodeship:</b>
+  <%= @voivodeship.name %>
+</p>
+
+<p>
+  <b>Mandates:</b>
+  <%= @voivodeship.mandates %>
+</p>
+<p>
+<%= link_to 'Show committees list', committees_voivodeships_listv_path(@voivodeship.id) %> |<br />
+<%= link_to 'Show constituencies list', constituencies_listconst_path(@voivodeship.id) %>
+</p>
+<%= link_to 'Edit', edit_voivodeship_path(@voivodeship) %> |
+<%= link_to 'Back', voivodeships_path %>

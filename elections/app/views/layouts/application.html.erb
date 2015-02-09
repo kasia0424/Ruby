@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Elections</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' %>
+  <%= stylesheet_link_tag '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' %>
+  <script type="text/javascript" src="communication.js"></script>
+  <%= stylesheet_link_tag 'style.css' %>
+</head>
+<body>
+
+<!--=== End Top ===-->
+<% if current_page?('/') %>
+  <%= yield %>
+<% else %>
+  <div class="container">
+    <%= yield %>
+  </div>
+<% end %>
+
+</body>
+</html>
+

@@ -1,0 +1,7 @@
+<h1>Editing committees_voivodeship</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show voivodeships for committee', committees_voivodeships_listc_path %> |
+<%= link_to 'Show committees list for voivodeship', committees_voivodeships_listv_path %> |<br/>
+<%= link_to 'Back', committees_voivodeships_path %>

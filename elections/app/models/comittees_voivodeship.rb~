@@ -1,0 +1,5 @@
+class ComitteesVoivodeship < ActiveRecord::Base
+  belongs_to :voivodeship
+  belongs_to :committee
+  # attr_accessible :title, :body
+end

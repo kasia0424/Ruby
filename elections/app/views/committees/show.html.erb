@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<span class="listing-title">
+  <b>Name:</b>
+  <%= @committee.name %>
+</span>
+
+<p>
+  <b>Logo url:</b>
+  <% unless @committee.logo_url.blank? %>
+    <div class="thumbnail"><%= image_tag (@committee.logo_url) if @committee.logo_url %></div>
+    <% end %>
+</p>
+<p>
+  <b> Voivodeships</b>
+  <ul>
+    <% @committee.voivodeship.each do |voi| %>
+  	<li><%= voi.name %></li>
+    <% end %>
+  </ul>
+</p>
+
+<span>
+<%= link_to 'Edit', edit_committee_path(@committee) %> |
+<%= link_to 'Back', committees_path %>
+</span>

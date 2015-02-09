@@ -1,0 +1,43 @@
+class ComitteesVoivodeshipsController < ApplicationController
+  before_filter :set_comittees_voivodeship, only: [:show, :edit, :update, :destroy]
+
+  respond_to :html
+
+  def index
+    @comittees_voivodeships = ComitteesVoivodeship.all
+    respond_with(@comittees_voivodeships)
+  end
+
+  def show
+    respond_with(@comittees_voivodeship)
+  end
+
+  def new
+    @comittees_voivodeship = ComitteesVoivodeship.new
+    respond_with(@comittees_voivodeship)
+  end
+
+  def edit
+  end
+
+  def create
+    @comittees_voivodeship = ComitteesVoivodeship.new(params[:comittees_voivodeship])
+    @comittees_voivodeship.save
+    respond_with(@comittees_voivodeship)
+  end
+
+  def update
+    @comittees_voivodeship.update_attributes(params[:comittees_voivodeship])
+    respond_with(@comittees_voivodeship)
+  end
+
+  def destroy
+    @comittees_voivodeship.destroy
+    respond_with(@comittees_voivodeship)
+  end
+
+  private
+    def set_comittees_voivodeship
+      @comittees_voivodeship = ComitteesVoivodeship.find(params[:id])
+    end
+end

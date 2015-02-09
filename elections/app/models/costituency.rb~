@@ -1,0 +1,4 @@
+class Costituency < ActiveRecord::Base
+  belongs_to :voivodeship
+  attr_accessible :empty_cards, :entitled, :given_cards, :invalid_votes, :multiple_choice, :other_invalid, :valid_votes
+end

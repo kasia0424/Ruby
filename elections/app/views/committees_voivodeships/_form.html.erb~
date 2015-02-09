@@ -1,0 +1,25 @@
+<%= form_for(@committees_voivodeship) do |f| %>
+  <% if @committees_voivodeship.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@committees_voivodeship.errors.count, "error") %> prohibited this committees_voivodeship from being saved:</h2>
+
+      <ul>
+      <% @committees_voivodeship.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :committee %><br />
+    <%= f.select :committee, @committees %>
+  </div>
+  <div class="field">
+    <%= f.label :voivodeship %><br />
+    <%= f.select :voivodeship, @voivodeships %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

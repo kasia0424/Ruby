@@ -1,0 +1,43 @@
+class VoivodeshipsController < ApplicationController
+  before_filter :set_voivodeship, only: [:show, :edit, :update, :destroy]
+
+  respond_to :html
+
+  def index
+    @voivodeships = Voivodeship.all
+    respond_with(@voivodeships)
+  end
+
+  def show
+    respond_with(@voivodeship)
+  end
+
+  def new
+    @voivodeship = Voivodeship.new
+    respond_with(@voivodeship)
+  end
+
+  def edit
+  end
+
+  def create
+    @voivodeship = Voivodeship.new(params[:voivodeship])
+    @voivodeship.save
+    respond_with(@voivodeship)
+  end
+
+  def update
+    @voivodeship.update_attributes(params[:voivodeship])
+    respond_with(@voivodeship)
+  end
+
+  def destroy
+    @voivodeship.destroy
+    respond_with(@voivodeship)
+  end
+
+  private
+    def set_voivodeship
+      @voivodeship = Voivodeship.find(params[:id])
+    end
+end

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Voivodeship:</b>
+  <%= @voivodeship.name %>
+</p>
+
+<p>
+  <b>Committees:</b>
+<% @commi_voi.each do |commi_voi| %>
+  <%= @commi_voi.committee_id %>
+<% @commi.each do |comm| %>
+  <%= comm.name %>
+<% end %>
+</p>
+
+<span>
+<%= link_to 'Edit', edit_committees_voivodeship_path(@commi_voi) %> |
+<%= link_to 'Back', committees_voivodeships_path %>
+</span>

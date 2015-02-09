@@ -1,0 +1,43 @@
+class VotesController < ApplicationController
+  before_filter :set_vote, only: [:show, :edit, :update, :destroy]
+
+  respond_to :html
+
+  def index
+    @votes = Vote.all
+    respond_with(@votes)
+  end
+
+  def show
+    respond_with(@vote)
+  end
+
+  def new
+    @vote = Vote.new
+    respond_with(@vote)
+  end
+
+  def edit
+  end
+
+  def create
+    @vote = Vote.new(params[:vote])
+    @vote.save
+    respond_with(@vote)
+  end
+
+  def update
+    @vote.update_attributes(params[:vote])
+    respond_with(@vote)
+  end
+
+  def destroy
+    @vote.destroy
+    respond_with(@vote)
+  end
+
+  private
+    def set_vote
+      @vote = Vote.find(params[:id])
+    end
+end

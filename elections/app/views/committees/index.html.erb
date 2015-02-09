@@ -1,0 +1,27 @@
+<h1>Listing committees</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Logo url</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @committees.each do |committee| %>
+  <tr>
+    <td><%= committee.name %></td>
+    <td><% unless committee.logo_url.blank? %>
+    <%= image_tag (committee.logo_url) if committee.logo_url %>
+    <% end %></td>
+    <td><%= link_to 'Show', committee %></td>
+    <td><%= link_to 'Edit', edit_committee_path(committee) %></td>
+    <td><%= link_to 'Destroy', committee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Committee', new_committee_path %>

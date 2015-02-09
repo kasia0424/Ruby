@@ -1,0 +1,49 @@
+<%= form_for(@constituency) do |f| %>
+  <% if @constituency.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@constituency.errors.count, "error") %> prohibited this constituency from being saved:</h2>
+
+      <ul>
+      <% @constituency.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :entitled %><br />
+    <%= f.number_field :entitled %>
+  </div>
+  <div class="field">
+    <%= f.label :invalid_votes %><br />
+    <%= f.number_field :invalid_votes %>
+  </div>
+  <div class="field">
+    <%= f.label :valid_votes %><br />
+    <%= f.number_field :valid_votes %>
+  </div>
+  <div class="field">
+    <%= f.label :given_cards %><br />
+    <%= f.number_field :given_cards %>
+  </div>
+  <div class="field">
+    <%= f.label :empty_cards %><br />
+    <%= f.number_field :empty_cards %>
+  </div>
+  <div class="field">
+    <%= f.label :multiple_choice %><br />
+    <%= f.number_field :multiple_choice %>
+  </div>
+  <div class="field">
+    <%= f.label :other_invalid %><br />
+    <%= f.number_field :other_invalid %>
+  </div>
+  <div class="field">
+    <%= f.label :voivodeship %><br />
+    <%= f.select :voivodeship_id, @voivodeship %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

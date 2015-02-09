@@ -1,0 +1,26 @@
+<h1>Listing committees_voivodeships</h1>
+
+<table>
+  <tr>
+    <th>Committee</th>
+    <th>Voivodeship</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @committees_voivodeships.each do |committees_voivodeship| %>
+  <tr>
+    <td><%= committees_voivodeship.committee.name %><br />
+	<%= link_to 'Voivodeships list', committees_voivodeships_listc_path(:id =>committees_voivodeship.committee_id) %></td>
+    <td><%= committees_voivodeship.voivodeship.name %></td>
+    <td><%= link_to 'Show committees', committees_voivodeships_listv_path(:id =>committees_voivodeship.voivodeship_id) %></td>
+    <td><%= link_to 'Edit', edit_committees_voivodeship_path(committees_voivodeship) %></td>
+    <td><%= link_to 'Destroy', committees_voivodeship, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Committees voivodeship', new_committees_voivodeship_path %>

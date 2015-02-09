@@ -1,0 +1,37 @@
+<!--=== Top ===-->
+<div class="browse">
+  <div class="container">
+    <ul>
+      <li><%= link_to 'Voivodeships', voivodeships_path %></li>
+      <li><%= link_to 'Committees', committees_path %></li>
+      <li><%= link_to 'Constituencies', constituencies_path %></li>
+      <li><%= link_to 'Votes', votes_path %></li>
+      <li>Users</li>
+      <li><%= link_to 'Admin', '/admin' %></li>
+      <li><%= link_to 'Committees_voivodeships', committees_voivodeships_path %></li>
+    </ul>
+  </div>
+</div>
+
+<div class="top">
+    <div class="container">
+    <div class="logo">
+      <img src="http://pliki.portalsamorzadowy.pl/i/06/11/27/061127.jpg" height="300px" width="100%">
+    </div>
+    <div>
+        <ul class="header-nav">
+            <%# if user_signed_in? %>
+              <%#Logged in as <strong>
+                <%#= current_user.email %>
+              </strong>.
+              <%#= link_to "Sign out", destroy_user_session_path, method: :delete, :class => "btn btn-default" %>
+            <%# else %>
+              <%#= link_to "Sign up", new_user_registration_path, :class => "btn btn-default" %>
+              <%#= link_to "Sign in", new_user_session_path, :class => "btn btn-default" %>
+            <%# end %>
+            
+        </ul>
+    </div>
+</div>
+</div>
+

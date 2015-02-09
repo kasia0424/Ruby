@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Voivodeship:</b>
+  <%= @constituency.voivodeship.name %>
+</p>
+
+<p>
+  <b>Entitled:</b>
+  <%= @constituency.entitled %>
+</p>
+
+<p>
+  <b>Invalid votes:</b>
+  <%= @constituency.invalid_votes %>
+</p>
+
+<p>
+  <b>Valid votes:</b>
+  <%= @constituency.valid_votes %><br/>
+</p>
+
+<p>
+  <b>Given cards:</b>
+  <%= @constituency.given_cards %> | 
+  <b><%= @left %></b> cards left.
+</p>
+
+<p><strong><br/>Invalid votes reasons:</strong></p> 
+<p>
+  <b>Empty cards:</b>
+  <%= @constituency.empty_cards %>
+</p>
+
+<p>
+  <b>Multiple choice:</b>
+  <%= @constituency.multiple_choice %>
+</p>
+
+<p>
+  <b>Other invalid:</b>
+  <%= @constituency.other_invalid %>
+</p>
+
+<p>
+  <% unless @cards.nil? || @cards ==0 %>
+  <%# else %>
+	<%= @cards %> cards is missing.
+  <% end %>
+</p>
+
+<%= link_to 'Results', votes_listconsti_path(@constituency.id) %></td> |
+<%= link_to 'Edit', edit_constituency_path(@constituency) %> |
+<%= link_to 'Back', constituencies_path %>

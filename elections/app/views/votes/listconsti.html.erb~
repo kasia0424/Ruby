@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Constituency:</b>
+  <%= @const.id %>
+</p>
+
+<p>
+  <b>Votes:</b><br/>
+<%# @commi_voi.each do |commi_voi| %>
+  Województwo <%= @const.voivodeship.name %>
+<% @votes.id.each do |vote| %>
+  <p>
+  Komitet: <%= vote.committee.name %><br/>
+  Ilość głosów: <%= vote.amount %>
+  </p>
+<% end %>
+</p>
+
+<span>
+<%= link_to 'Edit', edit_committees_voivodeship_path(@const.voivodeship_id) %> |
+<%= link_to 'Back', committees_voivodeships_path %>
+</span>
