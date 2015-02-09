@@ -1,5 +1,23 @@
 Elections::Application.routes.draw do
- 
+  #get "user_sessions/new"
+
+  #get "user_sessions/create"
+
+  #get "user_sessions/destroy"
+
+  resources :users, :only => [:new, :create,:edit,:update]
+  resource :user_sessions, :only => [:new, :create, :destroy]
+  get 'login' => 'user_sessions#new', :as => :login
+  get 'logout' => 'user_sessions#destroy', :as => :logout
+
+  get "users/new"
+
+  get "users/create"
+
+  get "users/edit"
+
+  get "users/update"
+
   resources :votes
     get 'votes/:id/listconsti' => 'votes#listconsti', :as => :votes_listconsti
 
