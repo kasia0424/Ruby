@@ -11,9 +11,17 @@
   <%= stylesheet_link_tag 'style.css' %>
 </head>
 <body>
-
+<ul>
+<% if current_user %>
+    <li><i class="fa fa-lock"></i><%= link_to "Wyloguj się", :logout %></li>
+<% else %>
+    <li><i class="fa fa-user-plus"></i><%= link_to "Zarejestruj się", new_user_path %></li>
+    <li><i class="fa fa-lock"></i><%= link_to "Zaloguj się", :login %></li>
+    <% end %>
+  </ul>
 <!--=== End Top ===-->
 <% if current_page?('/') %>
+
   <%= yield %>
 <% else %>
   <div class="container">
