@@ -1,12 +1,20 @@
 class VotesController < ApplicationController
-#before_action :set_committees, only: [:new, :edit, :update, :destroy]
-#before_action :set_constituencies, only: [:new, :edit, :update, :destroy]
-
+#before_filter :authenticate_user!
+#before_filter :set_committees, only: [:new, :edit, :update, :destroy]
+#before_filter :set_constituencies, only: [:new, :edit, :update, :destroy]
+load_and_authorize_resource
 
   # GET /votes
   # GET /votes.json
   def index
-    @votes = Vote.all
+    if current_user.role.name == "okregowy"
+      Constituency.where("user_id = ?", current_user.id).each do |con|
+        @const = con.id
+      end
+      @votes = Vote.where("constituency_id = ?", @const) 
+    else
+      @votes = Vote.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -40,10 +48,12 @@ class VotesController < ApplicationController
   # GET /votes/new.json
   def new
     @vote = Vote.new
-
-    @committee = Committee.all.map do |commi|
-	[commi.id]
-     end
+    Constituency.where("user_id = ?", current_user.id).each do |con|
+      @const = con
+    end
+    #@committee = Committee.all.map do |commi|
+	#[commi.id]
+     #end
     @constituency = Constituency.all.map do |consti|
         [consti.id]
      end
@@ -58,6 +68,9 @@ class VotesController < ApplicationController
   # GET /votes/1/edit
   def edit
     @vote = Vote.find(params[:id])
+    Constituency.where("user_id = ?", current_user.id).each do |con|
+      @const = con
+    end
     
     @constituency = Constituency.all.map do |consti|
         [consti.id]

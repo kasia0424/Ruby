@@ -10,9 +10,15 @@ class ApplicationController < ActionController::Base
     return @current_user if defined?(@current_user)
     @current_user = current_user_session && current_user_session.record
   end
-  def authenticate
+  def authenticate_user!
     if !current_user
-      redirect_to new_user_session_path
+      redirect_to login_path
     end
+  end
+
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = "Access denied"
+#exception.message
+    redirect_to users_show_path
   end
 end

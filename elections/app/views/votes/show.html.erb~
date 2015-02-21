@@ -2,7 +2,7 @@
 
 <p>
   <b>Constituency:</b>
-  <%= @vote.constituency.name %>
+  <%= @vote.constituency.id %>
 </p>
 
 <p>

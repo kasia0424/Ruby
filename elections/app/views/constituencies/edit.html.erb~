@@ -1,9 +1,12 @@
-<h1>Editing constituency</h1>
-
+<h1>Edit constituency
+	<%= @constituency.id %> in voivodeship <%= @constituency.voivodeship.name %> </h1><br/>
+<p>
+	<strong> Entitled: <%= @constituency.entitled %></strong>
+</p>
 <%= render 'form' %>
 
 <p>
-  <%=link_to 'Votes for committees', new_vote_path %>
+  <%=link_to 'Add votes for committees', new_vote_path %>
 </p>
 
 <%= link_to 'Show', @constituency %> |

@@ -1,0 +1,10 @@
+<p><b>Constituency <%= @constituency.id %> in voivodeship <%= @constituency.voivodeship.name %>
+</p>
+<p>
+Frekwencja:</b><br />
+<%= @frekwencja %>
+<%#= @constituency.entitled %> %
+</p>
+
+<%= link_to 'Show', @constituency %> |
+<%= link_to 'Back', constituencies_path %>

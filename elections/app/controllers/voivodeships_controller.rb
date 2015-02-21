@@ -1,5 +1,6 @@
 class VoivodeshipsController < ApplicationController
 #before_filter :authenticate_user!
+load_and_authorize_resource
   # GET /voivodeships
   # GET /voivodeships.json
   def index
@@ -9,6 +10,50 @@ class VoivodeshipsController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @voivodeships }
     end
+  end
+  def frekwencja
+	@voi = Voivodeship.find_by_id(params[:id])
+	@constituency = Constituency.where("voivodeship_id = ? AND given_cards IS NOT NULL", params[:id])
+	@voters = @constituency.sum(:entitled)
+	@cards = @constituency.sum(:given_cards)
+	if @voters != 0 && @cards!=0
+	  @frekwencja = @cards*100/@voters
+	else
+	  @frekwencja = 0
+	end
+  end
+
+  def results
+	@voivodeship = Voivodeship.find_by_id(params[:id])
+	constituency = Constituency.where("voivodeship_id = ? AND valid_votes IS NOT NULL", params[:id])
+	#@suma = 0
+	@votes = constituency.map do |vot|
+	   Vote.where("constituency_id = ?", vot)
+	end
+
+	comm = Committee.all 
+	@suma = comm.map do |comm|
+	   @votes.map do |cons|
+	     cons.where("committee_id = ?", comm).sum(:amount)
+	#   end
+	   end
+	end
+
+	#@suma.each do |sum|
+	#    sum.each do |su|
+	#	@sumsum =su[0]+su[1]
+	#    end 
+	#end
+
+  end
+
+  def invalid
+	@voi = Voivodeship.find_by_id(params[:id])
+	cons = Constituency.where("voivodeship_id = ? AND invalid_votes IS NOT NULL", params[:id])
+	@invalid = cons.sum(:invalid_votes)
+	@empty = cons.sum(:empty_cards)
+	@multiple = cons.sum(:multiple_choice)
+	@other = cons.sum(:other_invalid)	
   end
 
   # GET /voivodeships/1

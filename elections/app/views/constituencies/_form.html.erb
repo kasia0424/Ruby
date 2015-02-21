@@ -11,38 +11,43 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :entitled %><br />
-    <%= f.number_field :entitled %>
-  </div>
-  <div class="field">
-    <%= f.label :invalid_votes %><br />
-    <%= f.number_field :invalid_votes %>
-  </div>
-  <div class="field">
-    <%= f.label :valid_votes %><br />
-    <%= f.number_field :valid_votes %>
-  </div>
-  <div class="field">
-    <%= f.label :given_cards %><br />
-    <%= f.number_field :given_cards %>
-  </div>
-  <div class="field">
-    <%= f.label :empty_cards %><br />
-    <%= f.number_field :empty_cards %>
-  </div>
-  <div class="field">
-    <%= f.label :multiple_choice %><br />
-    <%= f.number_field :multiple_choice %>
-  </div>
-  <div class="field">
-    <%= f.label :other_invalid %><br />
-    <%= f.number_field :other_invalid %>
-  </div>
-  <div class="field">
-    <%= f.label :voivodeship %><br />
-    <%= f.select :voivodeship_id, @voivodeship %>
-  </div>
+  <% if current_user.role.name =="admin" %>
+			<div class="field">
+				<%= f.label :entitled %><br />
+				<%= f.number_field :entitled %>
+			</div>
+			<div class="field">
+				<%= f.label :voivodeship %><br />
+				<%= collection_select(:constituency, :voivodeship_id, Voivodeship.all, :id, :name, {prompt: true}, class: 'form-control') %>
+				<%#= f.select :voivodeship_id, @voivodeship %>
+			</div>
+  <% else %>
+			<div class="field">
+				<%#= f.label :invalid_votes %><br />
+				<%#= f.hidden_field :invalid_votes, value => :empty_cards+multiple_choice+other_invalid %>
+			</div>
+			<div class="field">
+				<%= f.label :valid_votes %><br />
+				<%= f.number_field :valid_votes %>
+			</div>
+			<div class="field">
+				<%= f.label :given_cards %><br />
+				<%= f.number_field :given_cards %>
+			</div>
+<p><strong>Invalid votes:</strong></p>
+			<div class="field">
+				<%= f.label :empty_cards %><br />
+				<%= f.number_field :empty_cards %>
+			</div>
+			<div class="field">
+				<%= f.label :multiple_choice %><br />
+				<%= f.number_field :multiple_choice %>
+			</div>
+			<div class="field">
+				<%= f.label :other_invalid %><br />
+				<%= f.number_field :other_invalid %>
+			</div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

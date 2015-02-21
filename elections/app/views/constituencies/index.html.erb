@@ -1,5 +1,4 @@
 <h1>Listing constituencies</h1>
-
 <table>
   <tr>
     <th>Voivodeship</th>
@@ -29,13 +28,21 @@
     <td><%= constituency.multiple_choice %></td>
     <td><%= constituency.other_invalid %></td>
     <td><%= link_to 'Results', votes_listconsti_path(constituency) %></td>
+    <% if constituency.given_cards != nil && constituency.given_cards !="" %>
+	<td><%= link_to 'Frekwencja', constituencies_frekwencja_path(constituency) %></td>
+    <% end %>
     <td><%= link_to 'Show', constituency_path(constituency) %></td>
-    <td><%= link_to 'Edit', edit_constituency_path(constituency) %></td>
-    <td><%= link_to 'Destroy', constituency, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% if can? :edit, constituency %>
+      <td><%= link_to 'Edit', edit_constituency_path(constituency) %></td>
+    <% end %>
+    <% if  can? :destory, constituency %>
+      <td><%= link_to 'Destroy', constituency, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'New Constituency', new_constituency_path %>
+<% if current_user.role.name == "admin" %>
+  <%= link_to 'New Constituency', new_constituency_path %>
+<% end %>

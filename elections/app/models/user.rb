@@ -5,4 +5,16 @@ class User < ActiveRecord::Base
     config.crypted_password_field = :crypted_password
     config.require_password_confirmation = true
   end
+  belongs_to :role
+  belongs_to :constituency
+
+  def admin?
+   self.role.name =="admin"
+  end
+  def centralny?
+    self.role.name =="centralny"
+  end
+  def okregowy?
+    self.role.name == "okregowy"
+  end
 end

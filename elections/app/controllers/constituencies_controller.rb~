@@ -1,17 +1,27 @@
 class ConstituenciesController < ApplicationController
-  #before_filter :set_costituency, only: [:show, :edit, :update, :destroy]
-
-  #respond_to :html
-
+#before_filter :authenticate_user!
+#load_and_authorize_resource
   # GET /constituencies
   # GET /constituencies.json
   def index
-    @constituencies = Constituency.all
+    if current_user.role.name == "okregowy"
+	@constituencies = Constituency.where("user_id = ?", current_user.id)
+    else
+        @constituencies = Constituency.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @constituencies }
     end
+  end
+  def frekwencja
+	@constituency = Constituency.find_by_id(params[:id])
+	#if @constituency.given_cards != nil && @constituency.given_cards !=""
+	  @frekwencja = @constituency.given_cards*100/@constituency.entitled
+	#else
+	#  render frekwencja-blad.html.erb
+	#end
   end
 
   # GET /constituencies/1
@@ -20,12 +30,18 @@ class ConstituenciesController < ApplicationController
     @constituency = Constituency.find(params[:id])
 
     cards = @constituency.given_cards.to_i - @constituency.valid_votes.to_i - @constituency.invalid_votes.to_i
+#@constituency.empty_cards.to_i - multiple_choice.to_i - @constituency.other_invalid.to_i
     if cards <0
 	@cards = -cards
     else
 	@cards = cards
     end
     @left = @constituency.entitled.to_i - @constituency.given_cards.to_i
+    #if left <0
+	@left = -left
+    else
+	@left = left
+    end
 
     respond_to do |format|
       format.html #show.html.erb
@@ -66,6 +82,12 @@ class ConstituenciesController < ApplicationController
      end
 	debugger
   end
+  def add_user
+    @constituency = Constituency.find_by_id(params[:id])
+    @user = User.all.map do |us|
+	[us.id]
+     end
+  end
 
   # POST /constituencies
   # POST /constituencies.json
@@ -87,6 +109,9 @@ class ConstituenciesController < ApplicationController
   # PUT /constituencies/1.json
   def update
     @constituency = Constituency.find(params[:id])
+    #empty = params[:empty_cards].to_i
+    #params[:invalid_votes] = empty + params[:multiple_choice].to_i
+#params[:empty_cards] + params[:multiple_choice] + params[:other_invalid] #@constituency.multiple_choice + @constituency.other_invalid
 
     respond_to do |format|
       if @constituency.update_attributes(params[:constituency])
@@ -110,14 +135,4 @@ class ConstituenciesController < ApplicationController
       format.json { head :no_content }
     end
   end
-end
-  def destroy
-    @costituency.destroy
-    respond_with(@costituency)
-  end
-
-  private
-    def set_costituency
-      @costituency = Costituency.find(params[:id])
-    end
 end

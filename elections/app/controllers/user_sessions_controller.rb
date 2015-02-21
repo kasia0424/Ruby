@@ -6,7 +6,7 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
       flash[:notice] = "Successfully logged in."
-      redirect_to root_url
+      redirect_to users_show_path#edit_constituency_path(@user.role_id)
     else
       render :action => 'new'
     end
@@ -15,6 +15,7 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.find
     @user_session.destroy
     flash[:notice] = "Successfully logged out."
-    redirect_to root_url
+    redirect_to login_path
   end
+
 end

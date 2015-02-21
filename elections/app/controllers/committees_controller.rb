@@ -1,7 +1,8 @@
 class CommitteesController < ApplicationController
+before_filter :authenticate_user!
   #before_filter :set_committee, only: [:show, :edit, :update, :destroy]
-
-  respond_to :html
+load_and_authorize_resource
+  #respond_to :html
 
  # GET /committees
   # GET /committees.json

@@ -1,4 +1,6 @@
 class CommitteesVoivodeshipsController < ApplicationController
+before_filter :authenticate_user!
+#load_and_authorize_resource
   # GET /committees_voivodeships
   # GET /committees_voivodeships.json
   def index

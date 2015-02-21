@@ -1,11 +1,20 @@
 Elections::Application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
+  resources :roles_users
+
+
+  resources :roles
+
+
   #get "user_sessions/new"
 
   #get "user_sessions/create"
 
   #get "user_sessions/destroy"
 
-  resources :users, :only => [:new, :create,:edit,:update]
+  resources :users, :only => [:index, :show, :new, :create, :edit, :update, :destroy]
   resource :user_sessions, :only => [:new, :create, :destroy]
   get 'login' => 'user_sessions#new', :as => :login
   get 'logout' => 'user_sessions#destroy', :as => :logout
@@ -15,18 +24,28 @@ Elections::Application.routes.draw do
   get "users/create"
 
   get "users/edit"
+  get "users/show"
 
   get "users/update"
+  get "users/role"
+  #
+  get "users/index"
+  get "users/:id/add" => "users#add", :as => :users_add
 
   resources :votes
     get 'votes/:id/listconsti' => 'votes#listconsti', :as => :votes_listconsti
 
 
   resources :voivodeships
+   get 'voivodeships/:id/frekwencja' => 'voivodeships#frekwencja', :as => :voivodeships_frekwencja
+   get 'voivodeships/:id/results' => 'voivodeships#results', :as => :voivodeships_results
+   get 'voivodeships/:id/invalid' => 'voivodeships#invalid', :as => :voivodeships_invalid
 
 
   resources :constituencies
     get 'constituencies/:id/listconst' => 'constituencies#listconst', :as => :constituencies_listconst
+    get 'constituencies/:id/frekwencja' => 'constituencies#frekwencja', :as => :constituencies_frekwencja
+    get 'constituencies/:id/add' => 'constituencies#add_user', :as => :constituencies_add
 
 
   resources :committees_voivodeships
@@ -36,7 +55,7 @@ Elections::Application.routes.draw do
 
   resources :committees
 
-  root :to => 'voivodeships#index'
+  root :to => 'user_sessions#new'#'voivodeships#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,13 +1,17 @@
-<p id="notice"><%= notice %></p>
-
+<p id="notice"><%#= notice %></p>
+Com<% if @committees_voivodeship.committee_id ==nil %>
+0
+<%#.each do |co| %>
+<%#= co %>
+<% end %>
 <p>
   <b>Committee:</b>
-  <%= @committees_voivodeship.committee_id %>
+  <%= @committees_voivodeship.committee.name %>
 </p>
 
 <p>
   <b>Voivodeship:</b>
-  <%= @committees_voivodeship.voivodeship_id %>
+  <%= @committees_voivodeship.voivodeship.name %>
 </p>
 
 

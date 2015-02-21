@@ -2,7 +2,9 @@
 
 <table>
   <tr>
+    <% unless current_user.role.name == "okregowy" %>
     <th>Constituency</th>
+    <% end %>
     <th>Committee</th>
     <th>Votes</th>
     <th></th>
@@ -12,12 +14,17 @@
 
 <% @votes.each do |vote| %>
   <tr>
+    <% unless current_user.role.name == "okregowy" %>
     <td><%= vote.constituency.id %></td>
+    <% end %>
     <td><%= vote.committee.name %></td>
     <td><%= vote.amount %></td>
     <td><%= link_to 'Show', vote %></td>
+<% if can? :edit, vote %>
     <td><%= link_to 'Edit', edit_vote_path(vote) %></td>
+<% elsif  current_user.role.name == "admin" %>
     <td><%= link_to 'Destroy', vote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<% end %>
   </tr>
 <% end %>
 </table>

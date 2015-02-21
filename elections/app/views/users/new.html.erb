@@ -16,5 +16,9 @@
       <%= f.label :password_confirmation %> <br />
       <%= f.password_field :password_confirmation %>
     </p>
+<p>
+ <%= f.label :role_id %><br>
+    <%= collection_select(:user, :role_id, Role.all, :id, :name, {prompt: true}, class: 'form-control') %>
+</p>
     <p><%= f.submit "Submit" %> </p>
 <% end %>

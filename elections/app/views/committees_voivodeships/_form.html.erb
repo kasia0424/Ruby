@@ -13,11 +13,13 @@
 
   <div class="field">
     <%= f.label :committee %><br />
-    <%= f.select :committee_id, @committees %>
+    <%= collection_select(:committees_voivodeship, :committee_id, Committee.all, :id, :name, {prompt: true}, class: 'form-control') %>
+    <%#= f.select :committee_id, @committees %>
   </div>
   <div class="field">
     <%= f.label :voivodeship %><br />
-    <%= f.select :voivodeship_id, @voivodeships %>
+    <%= collection_select(:committees_voivodeship, :voivodeship_id, Voivodeship.all, :id, :name, {prompt: true}, class: 'form-control') %>
+    <%#= f.select :voivodeship_id, @voivodeships %>
   </div>
   <div class="actions">
     <%= f.submit %>

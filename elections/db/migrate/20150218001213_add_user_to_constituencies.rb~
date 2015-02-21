@@ -1,0 +1,5 @@
+class AddUserToConstituencies < ActiveRecord::Migration
+  def change
+    add_column :constituencies, :user, :integer
+  end
+end

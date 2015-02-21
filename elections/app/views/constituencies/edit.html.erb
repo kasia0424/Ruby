@@ -1,5 +1,8 @@
-<h1>Editing constituency</h1>
-
+<h1>Edit constituency
+	<%= @constituency.id %> in voivodeship <%= @constituency.voivodeship.name %> </h1><br/>
+<p>
+	<strong> Entitled: <%= @constituency.entitled %></strong>
+</p>
 <%= render 'form' %>
 
 <p>

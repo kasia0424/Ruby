@@ -1,3 +1,4 @@
+Constituency <%= @const.id %> in voivodeship <%= @const.voivodeship.name %>
 <%= form_for(@vote) do |f| %>
   <% if @vote.errors.any? %>
     <div id="error_explanation">
@@ -16,12 +17,13 @@
     <%= f.number_field :amount %>
   </div>
   <div class="field">
-    <%= f.label :constituency %><br />
-    <%= f.select :constituency_id, @constituency %>
+    <%#= f.select :constituency_id, @constituency %>
+    <%= f.hidden_field :constituency_id, :value => @const.id %>
   </div>
   <div class="field">
     <%= f.label :committee %><br />
-    <%= f.select :committee_id, @committee %>
+    <%= collection_select(:vote, :committee_id, Committee.all, :id, :name, {prompt: true}, class: 'form-control') %>
+    <%#= f.select :committee_id, @committee %>
   </div>
   <div class="actions">
     <%= f.submit %>

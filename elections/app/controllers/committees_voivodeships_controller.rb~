@@ -1,8 +1,10 @@
 class CommitteesVoivodeshipsController < ApplicationController
+before_filter :authenticate_user!
+#load_and_authorize_resource
   # GET /committees_voivodeships
   # GET /committees_voivodeships.json
   def index
-    @committees_voivodeships = CommitteesVoivodeships.all
+    @committees_voivodeships = CommitteesVoivodeship.all
 	#@committees = Committee.all #where("voivodeship_id is not null")
 	#@voivodeship = Voivodeship.all
 

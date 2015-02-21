@@ -1,0 +1,43 @@
+ActiveAdmin.register Committee do
+  menu :label => I18n.t(:Committees)
+
+  index do
+    selectable_column
+    column :name
+    column :logo
+    column 'Edycja statusu' do |committee|
+      link_to 'Show', show_admin_committee_path(committee)
+    end
+    column 'Edit' do |committee|
+      link_to 'Edit', edit_admin_committee_path(committee)
+    end
+    column 'Destroy' do |committee|
+      link_to 'Destroy', destroy_admin_committee_path(committee)
+    end
+    actions
+  end
+
+  show do
+    attributes_table do
+      row :name
+      row :logo
+    end
+  end
+
+  controller do
+    def edit
+      @committee = Committee.find(params[:id])
+    end
+
+    def create
+      create! do |format|
+        format.html { redirect_to :back }
+      end
+    end
+
+   def destroy
+     @committee = Committee.find(params[:id])
+     @committee.destroy
+   end
+
+ end

@@ -12,7 +12,7 @@
 <ul>
 <% @voi.each do |voivode| %>
   <li><%= voivode.name %> | 
-	<%= link_to 'Edit', edit_committees_voivodeship_path(@voi) %></li>
+	<%= link_to 'Edit', edit_committees_voivodeship_path(voivode.id) %></li>
 <% end %>
 </ul>
 </p>

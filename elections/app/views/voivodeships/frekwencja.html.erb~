@@ -1,0 +1,7 @@
+<p><b>Voivodeship <%= @voi.name %></b>
+</p>
+<p>
+Frekwencja:<br />
+<%= @frekwencja %>
+<%#= @cards %> %
+</p>

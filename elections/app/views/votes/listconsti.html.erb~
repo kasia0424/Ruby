@@ -1,6 +1,7 @@
-<p id="notice"><%= notice %></p>
+<p id="notice"><%#= notice %></p>
 
 <p>
+  <b>Województwo</b> <%= @const.voivodeship.name %> <br/>
   <b>Constituency:</b>
   <%= @const.id %>
 </p>
@@ -8,13 +9,13 @@
 <p>
   <b>Votes:</b><br/>
 <%# @commi_voi.each do |commi_voi| %>
-  Województwo <%= @const.voivodeship.name %>
-<% @votes.id.each do |vote| %>
+  
+<%# @votes.each do |votes| %>
   <p>
-  Komitet: <%= vote.committee.name %><br/>
-  Ilość głosów: <%= vote.amount %>
+  Komitet: <%= @votes.committee.name %><br/>
+  Ilość głosów: <%= @votes.amount %>
   </p>
-<% end %>
+<%# end %>
 </p>
 
 <span>

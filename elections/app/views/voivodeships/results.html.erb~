@@ -1,0 +1,30 @@
+<p>
+  <b>Results</b><br/>
+  Voivodeship: <%= @voivodeship.name %>
+</p>
+<table>
+  <tr>
+	<th>Komitet</th>
+	<th>Ilość</th>
+  </tr>
+<%#= @votes %>
+<% @votes.each do |votes| %>
+  <% votes.each do |vot| %>
+  <tr>
+	<td><%= vot.committee.name %></td>
+	<td><%= vot.amount %> </td>
+  </tr>
+  <% end %>
+<% end %>
+</table>
+
+<div>
+<%= @suma %>
+<%#SumSum <%= @sumsum %>
+<p>Suma: <% @suma.each do |sum| %>
+<%# sum.each do |suma| %>
+<%= sum[0]+sum[1] %><br/>
+<%# end %>
+<% end %>
+</p>
+</div>
