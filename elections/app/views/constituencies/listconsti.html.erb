@@ -1,0 +1,38 @@
+<p id="notice"><%#= notice %></p>
+
+<p>
+  <b>Województwo</b> <%= @const.voivodeship.name %> <br/>
+  <b>Constituency:</b>
+  <%= @const.id %>
+</p>
+<%#AAAAAAAA= @results %>
+<br/>
+<%#CC= @rozm %><br/>
+<%#BBB = @comis[@rozm] %><%#.each do |com| %>
+  <%#= com.id %>
+<%# end %>
+<p>
+  <b>Votes:</b><br/>
+<%# @commi_voi.each do |commi_voi| %>
+  
+<% @results.each do |votes| %>
+ <div>
+  <% if @rozm > 1 %>
+  <% unless @rozm<0 %>
+	  Komitet: <%= @comis[@size] %><br/>
+	  Ilość głosów: <%= votes[@rozm] %>
+	  <% @size= @size -1 %>
+  <% end %>
+  <% else %>
+	Komitet: <%= @comis[@size] %><br/>
+	Ilość głosów: <%= votes[1] %>
+	<% @size= @size -1 %>
+  <% end %>
+ </div>
+<% end %>
+</p>
+
+<span>
+<%= link_to 'Edit', edit_committees_voivodeship_path(@const.voivodeship_id) %> |
+<%= link_to 'Back', constituencies_path %>
+</span>

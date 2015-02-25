@@ -17,9 +17,6 @@
     <td><%= voivodeship.name %></td>
     <td><%= voivodeship.mandates %></td>
     <td><%= link_to 'Show', voivodeship %></td>
-    <td><%= link_to 'Frekwencja', voivodeships_frekwencja_path(voivodeship) %></td>
-    <td><%= link_to 'Results', voivodeships_results_path(voivodeship) %></td>
-    <td><%= link_to 'Invalid', voivodeships_invalid_path(voivodeship) %></td>
     <td><%= link_to 'Edit', edit_voivodeship_path(voivodeship) %></td>
     <td><%= link_to 'Destroy', voivodeship, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
@@ -29,3 +26,5 @@
 <br />
 
 <%= link_to 'New Voivodeship', new_voivodeship_path %>
+
+

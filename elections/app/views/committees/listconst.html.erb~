@@ -2,15 +2,15 @@
 
 <p>
   <b>Committee:</b>
-  <%= @committee.name %>
+  <%= @voivodeship.name %>
 </p>
 
 <p>
-  <b>Voivodeships:</b>
+  <b>Constituencies:</b>
 <%# @commi_voi.each do |commi_voi| %>
-  <%= @commi_voi.voivodeship_id %>
-<% @voi.each do |voivode| %>
-  <%= voivode.name %>
+  <%#= @commi_voi.voivodeship_id %>
+<% @const.each do |consti| %>
+  <%= consti.name %>
 <% end %>
 </p>
 

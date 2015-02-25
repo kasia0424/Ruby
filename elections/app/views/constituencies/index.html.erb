@@ -4,9 +4,9 @@
     <th>Voivodeship</th>
     <th>Id</th>
     <th>Entitled</th>
+    <th>Given cards</th>
     <th>Invalid votes</th>
     <th>Valid votes</th>
-    <th>Given cards</th>
     <th>Empty cards</th>
     <th>Multiple choice</th>
     <th>Other invalid</th>
@@ -21,22 +21,25 @@
     <td><%= constituency.voivodeship.name %></td>
     <td><%= constituency.id %></td>
     <td><%= constituency.entitled %></td>
+    <td><%= constituency.given_cards %></td>
     <td><%= constituency.invalid_votes %></td>
     <td><%= constituency.valid_votes %></td>
-    <td><%= constituency.given_cards %></td>
     <td><%= constituency.empty_cards %></td>
     <td><%= constituency.multiple_choice %></td>
     <td><%= constituency.other_invalid %></td>
-    <td><%= link_to 'Results', votes_listconsti_path(constituency) %></td>
-    <% if constituency.given_cards != nil && constituency.given_cards !="" %>
-	<td><%= link_to 'Frekwencja', constituencies_frekwencja_path(constituency) %></td>
+    <% if current_user.role.name != "okregowy" %>
+      <td><%= link_to 'Results', votes_listconsti_path(constituency) %></td>
     <% end %>
+
     <td><%= link_to 'Show', constituency_path(constituency) %></td>
     <% if can? :edit, constituency %>
       <td><%= link_to 'Edit', edit_constituency_path(constituency) %></td>
     <% end %>
     <% if  can? :destory, constituency %>
       <td><%= link_to 'Destroy', constituency, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+    <% if constituency.given_cards != nil && constituency.given_cards !="" %>
+	<td><%= link_to 'Frekwencja', constituencies_frekwencja_path(constituency) %></td>
     <% end %>
   </tr>
 <% end %>

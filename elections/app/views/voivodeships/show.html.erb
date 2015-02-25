@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<p id="notice"><%#= notice %></p>
 
 <p>
   <b>Voivodeship:</b>
@@ -9,9 +9,14 @@
   <b>Mandates:</b>
   <%= @voivodeship.mandates %>
 </p>
+<ul>
+    <li><%= link_to 'Frekwencja', voivodeships_frekwencja_path(@voivodeship) %></li>
+    <li><%= link_to 'Results', voivodeships_results_path(@voivodeship) %></li>
+    <li><%= link_to 'Invalid', voivodeships_invalid_path(@voivodeship) %></li>
+</ul>
 <p>
-<%= link_to 'Show committees list', committees_voivodeships_listv_path(@voivodeship.id) %> |<br />
-<%= link_to 'Show constituencies list', constituencies_listconst_path(@voivodeship.id) %>
+<%= link_to 'Committees list', committees_voivodeships_listv_path(@voivodeship.id) %> | 
+<%= link_to 'Constituencies list', constituencies_listconst_path(@voivodeship.id) %>
 </p>
 <%= link_to 'Edit', edit_voivodeship_path(@voivodeship) %> |
 <%= link_to 'Back', voivodeships_path %>

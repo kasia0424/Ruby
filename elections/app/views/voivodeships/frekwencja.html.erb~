@@ -2,6 +2,12 @@
 </p>
 <p>
 Frekwencja:<br />
-<%= @frekwencja %>
+<% if @frekwencja > 100 %>
+  100
+<% else %>
+  <%= @frekwencja %>
+<% end %>
 <%#= @cards %> %
 </p>
+
+<%= link_to 'Back', voivodeships_path %>

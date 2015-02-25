@@ -11,38 +11,51 @@
   <%= stylesheet_link_tag 'style.css' %>
 </head>
 <body>
-<div class="browse">
-  <div class="container">
-    <ul>
-      <li class="button"><%= link_to 'Voivodeships', voivodeships_path %></li>
-      <li><%= link_to 'Committees', committees_path %></li>
-      <li><%= link_to 'Constituencies', constituencies_path %></li>
-      <li><%= link_to 'Votes', votes_path %></li>
-      <li><%= link_to 'Users', users_path %></li>
-      <%#<li>= link_to 'Admin', '/admin' %></li>
-      <li><%= link_to 'Committees_voivodeships', committees_voivodeships_path %></li>
-    </ul>
-  </div>
-</div>
-
 <div class="top">
     <div class="container">
     <div class="logo">
       <img src="http://pliki.portalsamorzadowy.pl/i/06/11/27/061127.jpg" height="300px" width="100%">
     </div>
 </div>
-<div class="container">
-  <p id="notice"><%= notice %></p>
-<ul>
+
+<div class="browse">
+	<div class="container">
+	<ul>
+	<% if current_user %>
+		  <li>Zalogowany jako <strong><%= current_user.login %> </strong></li>
+		  <li><i class="fa fa-lock"></i><%= link_to "Wyloguj się", :logout %></li>
+	<% else %>
+		  <%#<li><i class="fa fa-user-plus"></i><%= link_to "Zarejestruj się", new_user_path %></li>
+		  <li><i class="fa fa-lock"></i><%= link_to "Zaloguj się", :login %></li>
+	<% end %>
+		</ul>
+	</div>
+
+
+  <div class="container">
+		<p id="notice"><%= notice %></p>
+
 <% if current_user %>
-    <li>Zalogowany jako <strong><%= current_user.login %> </strong></li>
-    <li><i class="fa fa-lock"></i><%= link_to "Wyloguj się", :logout %></li>
-<% else %>
-    <%#<li><i class="fa fa-user-plus"></i><%= link_to "Zarejestruj się", new_user_path %></li>
-    <li><i class="fa fa-lock"></i><%= link_to "Zaloguj się", :login %></li>
+    <ul>
+    <% if current_user.role.name != "admin" %>
+      <li><%= link_to 'My account', user_path(current_user.id) %></li>
+    <% else %>
+      <li><%= link_to 'Users', users_path %></li>
+    <% end %>
+    <% if current_user.role.name != "okregowy" %>
+      <li><%= link_to 'Voivodeships', voivodeships_path %> | 
+      <%= link_to 'Committees', committees_path %> | 
+      <%= link_to 'Committees_voivodeships', committees_voivodeships_path %> | 
+      <%= link_to 'Constituencies', constituencies_path %></li>
+      <li><%= link_to 'Votes', votes_path %></li>
+    <% else %>
+      <li><%= link_to 'Constituencies', constituencies_path %></li>
+      <li><%= link_to 'Votes', votes_path %></li>
+    <% end %>
+      <%#<li>= link_to 'Admin', '/admin' %></li>
+    </ul>
 <% end %>
-  </ul>
-</div>
+  </div>
 </div>
 <!--=== End Top ===-->
 <% if current_page?('/') %>

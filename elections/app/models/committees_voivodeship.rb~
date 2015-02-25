@@ -1,0 +1,19 @@
+class CommitteesVoivodeship < ActiveRecord::Base
+  belongs_to :committee
+  belongs_to :voivodeship
+  attr_accessible :committee_id,
+	:voivodeship_id
+
+
+  def self.count_votes_for_committees(constituency, comm)
+    sum = 0
+    @results = Hash.new
+    comm.each do |committee|
+      voivodeship.votes.where("committee_id = ? AND constituency_id = ?", committee.id, constituency.id).each { |v| sum += v.number_of_votes }
+      @results[committee.name] = sum
+      sum = 0
+    end
+
+    return @results
+  end
+end

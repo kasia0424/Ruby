@@ -1,7 +1,7 @@
 class Constituency < ActiveRecord::Base
   belongs_to :voivodeship
   has_many :votes
-  has_one :user
+  has_and_belongs_to_one :user
   attr_accessible :empty_cards,
 	:entitled,
 	:given_cards,

@@ -19,8 +19,11 @@
 </table>
 
 <div>
-<%= @suma %>
-<%#SumSum <%= @sumsum %>
+<%= @size %>
+<%= @suma[1] %>
+SumSum <%= @sumsum.each do |su| %>
+SU<%= su[@size -1] %>
+<% end %>
 <p>Suma: <% @suma.each do |sum| %>
 <%# sum.each do |suma| %>
 <%= sum[0]+sum[1] %><br/>
@@ -28,3 +31,4 @@
 <% end %>
 </p>
 </div>
+<%= link_to 'Back', voivodeship_path(@voivodeship) %>

@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<p id="notice"><%#= notice %></p>
 
 <p>
   <b>Committee:</b>
@@ -9,12 +9,14 @@
   <b>Constituencies:</b>
 <%# @commi_voi.each do |commi_voi| %>
   <%#= @commi_voi.voivodeship_id %>
-<%# @const.each do |consti| %>
-  <%= @const.name %>
-<%# end %>
+<ul>
+<% @const.each do |consti| %>
+  <li><%= consti.id %><%= link_to 'Show', constituency_path(consti) %>
+<% end %>
+</ul>
 </p>
 
 <span>
-<%= link_to 'Edit', edit_committees_voivodeship_path(@commi_voi) %> |
+<%#= link_to 'Edit', edit_committees_voivodeship_path(@commi_voi) %> |
 <%= link_to 'Back', committees_voivodeships_path %>
 </span>

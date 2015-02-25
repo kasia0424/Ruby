@@ -36,6 +36,9 @@ load_and_authorize_resource
   def listconsti
     @votes = Vote.find_by_constituency_id(params[:id])
     @const = Constituency.find_by_id(params[:id])
+    voivodeship = @const.voivodeship.id
+    comm = Committees_voivodeship.find_by_voivodeship_id(voivodeship)
+    @committees_votes = Constituency.count_votes_for_committees(@const, comm)
     #@commi = @voivodeship.committees
 
     respond_to do |format|

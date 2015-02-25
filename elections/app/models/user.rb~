@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
     config.require_password_confirmation = true
   end
   belongs_to :role
-  has_one :constituency
+  has_and_belongs_to_one :constituency
 
   def admin?
    self.role.name =="admin"

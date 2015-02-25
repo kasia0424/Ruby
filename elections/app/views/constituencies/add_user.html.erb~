@@ -1,13 +1,27 @@
+<strong>User <%= @user.login %></strong>
 <p>
-  Constituency: <%= @constituency.id %><br/>
-  Add user:
+<table>
+<% @constituency.each do |const| %>
+<tr>
+  <td>Constituency: <%= const.id %> in voivodeship <%= const.voivodeship.name %></td>
+	<td><%= form_for(const) do |f| %>
+	<%= f.hidden_field :user_id, :value => @user.id %>
+	  <div class="actions">
+	    <%= f.submit "add user" %>
+	  </div>
+	<% end %></td>
+</tr>
+<% end %>
+</table>
 </p>
-<%= form_for(@constituency) do |f| %>
+<%#= form_for(@constituency) do |f| %>
   <div class="field">
-    <%= f.label :"add user" %><br />
-    <%= f.select :user_id, @user %>
+    <%#= f.label :"add user" %><br />
+    <%#= f.select :user_id, @user %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%#= f.submit %>
   </div>
-<% end %>
+<%# end %>
+
+<%= link_to 'Back', users_path %>

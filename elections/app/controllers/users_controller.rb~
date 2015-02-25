@@ -15,9 +15,7 @@ class UsersController < ApplicationController
 		@user = @use
 		@role = @use.role.name
 	     else
-		@user = User.find_by_id(params[:id])#.each do |us|
-		#   = us
-		#end
+		@user = User.find_by_id(params[:id])
 		@role = @user.role.name
 	     end
     elsif @use.role.name == "okregowy"

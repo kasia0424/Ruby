@@ -1,4 +1,4 @@
-<h2> Invalid votes in <%= @voi.name %> </h2>
+<p><strong> Invalid votes in <%= @voi.name %> </strong></p>
 <p>
 Amount of invalid votes: <%= @invalid %>
 </p>
@@ -15,4 +15,4 @@ Multiple choice: <%= @multiple %>
 Other: <%= @other %>
 </p>
 
-<%= link_to 'Back', voivodeships_path %>
+<%= link_to 'Back', voivodeship_path(@voi) %>

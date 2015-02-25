@@ -1,7 +1,7 @@
-<p><b>Constituency <%= @constituency.id %> in voivodeship <%= @constituency.voivodeship.name %></b>
+<p><b>Constituency <%= @constituency.id %> in voivodeship <%= @constituency.voivodeship.name %>
 </p>
 <p>
-Frekwencja:<br />
+Frekwencja:</b><br />
 <%= @frekwencja %>
 <%#= @constituency.entitled %> %
 </p>

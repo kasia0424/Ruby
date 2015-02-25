@@ -5,12 +5,26 @@
 
 <p>
   <b>Mail:</b>
-  <%#= @user.email %>
+  <%= @user.email %>
 </p>
 
 <p>
   <b>Rola:</b>
-  <%#= @role %>
+  <%= @role %>
 </p>
+
+<div>
+Abilities:
+<% if current_user.role.name == "okregowy" %>
+<%= link_to 'Create voivodeship', new_vote_path %>
+<ul>
+ <li><%= link_to '
+</ul>
+<%= link_to 'Create constituency', new_constituency_path %>
+
+<%#= link_to 'Show committees in voivodesip', committees_voivodeships_listv_path(:id =>committees_voivodeship.voivodeship_id) %>
+
+<% end %>
+</div>
 
 <%#= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %>

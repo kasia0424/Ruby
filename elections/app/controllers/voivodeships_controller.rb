@@ -16,6 +16,7 @@ load_and_authorize_resource
 	@constituency = Constituency.where("voivodeship_id = ? AND given_cards IS NOT NULL", params[:id])
 	@voters = @constituency.sum(:entitled)
 	@cards = @constituency.sum(:given_cards)
+	@committees = Committee.all
 	if @voters != 0 && @cards!=0
 	  @frekwencja = @cards*100/@voters
 	else
@@ -38,12 +39,15 @@ load_and_authorize_resource
 	#   end
 	   end
 	end
-
+        @size = @suma.size
+@sumsum = Hash.new
+for i in 0..@size
 	#@suma.each do |sum|
 	#    sum.each do |su|
-	#	@sumsum =su[0]+su[1]
+	@sumsum[i] = @suma[i] #sum[0]+su[1]
 	#    end 
-	#end
+end
+
 
   end
 

@@ -17,31 +17,24 @@ class ConstituenciesController < ApplicationController
   end
   def frekwencja
 	@constituency = Constituency.find_by_id(params[:id])
-	#if @constituency.given_cards != nil && @constituency.given_cards !=""
-	  @frekwencja = @constituency.given_cards*100/@constituency.entitled
-	#else
-	#  render frekwencja-blad.html.erb
-	#end
+	@frekwencja = @constituency.given_cards*100/@constituency.entitled
+
   end
 
   # GET /constituencies/1
   # GET /constituencies/1.json
   def show
     @constituency = Constituency.find(params[:id])
-
-    cards = @constituency.given_cards.to_i - @constituency.valid_votes.to_i - @constituency.invalid_votes.to_i
-#@constituency.empty_cards.to_i - multiple_choice.to_i - @constituency.other_invalid.to_i
-    if cards <0
+    votes = @constituency.valid_votes.to_i + @constituency.invalid_votes.to_i
+    cards = @constituency.given_cards.to_i - votes 
+    if votes > @constituency.given_cards.to_i
+	@cards = 0
+    elsif cards <0
 	@cards = -cards
     else
 	@cards = cards
     end
     @left = @constituency.entitled.to_i - @constituency.given_cards.to_i
-    #if left <0
-	@left = -left
-    else
-	@left = left
-    end
 
     respond_to do |format|
       format.html #show.html.erb
@@ -50,8 +43,9 @@ class ConstituenciesController < ApplicationController
   end
 
   def listconst
+    id = params[:id]
     @voivodeship = Voivodeship.find_by_id(params[:id])
-    @const = Constituency.find_by_voivodeship_id(params[:id])
+    @const = Constituency.where("voivodeship_id = ?", params[:id])
     #@commi = @voivodeship.committees
 
     respond_to do |format|
@@ -80,13 +74,44 @@ class ConstituenciesController < ApplicationController
     @voivodeship = Voivodeship.all.map do |voi|
 	[voi.id]
      end
-	debugger
   end
+
+  def listconsti
+    @const = Constituency.find_by_id(params[:id])
+    @voivodeship = @const.voivodeship_id
+    comm = CommitteesVoivodeship.where("voivodeship_id = ?", @voivodeship)
+    sum = 0
+    @results = Hash.new
+    @coo = Committee.all #.each do |c|
+    #  comm.each do |com|
+    #    if c.id == com
+    #      @committees = c
+    #    end 
+    #  end
+    #end
+    i=0
+    @comis = Hash.new
+    
+    @coo.each do |com|
+      @comis[i] = com.name
+      i=i+1
+    end
+    @rozm = -1
+    comm.each do |committee|
+      Vote.where("committee_id = ? AND constituency_id = ?", committee.id, @const.id).each { |v| sum += v.amount }
+      @results[committee] = sum
+      sum = 0
+      @rozm +=1
+    end
+
+  end
+
+
+
+
   def add_user
-    @constituency = Constituency.find_by_id(params[:id])
-    @user = User.all.map do |us|
-	[us.id]
-     end
+    @user = User.find_by_id(params[:id])
+    @constituency = Constituency.all
   end
 
   # POST /constituencies
@@ -109,9 +134,6 @@ class ConstituenciesController < ApplicationController
   # PUT /constituencies/1.json
   def update
     @constituency = Constituency.find(params[:id])
-    #empty = params[:empty_cards].to_i
-    #params[:invalid_votes] = empty + params[:multiple_choice].to_i
-#params[:empty_cards] + params[:multiple_choice] + params[:other_invalid] #@constituency.multiple_choice + @constituency.other_invalid
 
     respond_to do |format|
       if @constituency.update_attributes(params[:constituency])

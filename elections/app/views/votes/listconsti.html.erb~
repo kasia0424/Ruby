@@ -10,15 +10,13 @@
   <b>Votes:</b><br/>
 <%# @commi_voi.each do |commi_voi| %>
   
-<%# @votes.each do |votes| %>
-  <p>
-  Komitet: <%= @votes.committee.name %><br/>
-  Ilość głosów: <%= @votes.amount %>
-  </p>
-<%# end %>
+<% @votes.each do |votes| %>
+  Komitet: <%= votes.committee.name %><br/>
+  Ilość głosów: <%= votes.amount %>
+<% end %>
 </p>
 
 <span>
 <%= link_to 'Edit', edit_committees_voivodeship_path(@const.voivodeship_id) %> |
-<%= link_to 'Back', committees_voivodeships_path %>
+<%= link_to 'Back', constituencies_path %>
 </span>

@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<p id="notice"><%#= notice %></p>
 
 <p>
   <b>Committee:</b>
@@ -11,8 +11,10 @@
   <%#= @commi_voi.voivodeship_id %>
 <ul>
 <% @voi.each do |voivode| %>
-  <li><%= voivode.name %> | 
-	<%= link_to 'Edit', edit_committees_voivodeship_path(voivode.id) %></li>
+  <li><%= voivode.name %> <%# | 
+	<%#= link_to 'Destroy', @commi_voi(voivode.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+	<%#= link_to 'Edit', edit_committees_voivodeship_path(voivode.id) %>
+  </li>
 <% end %>
 </ul>
 </p>

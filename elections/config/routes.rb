@@ -33,7 +33,7 @@ Elections::Application.routes.draw do
   get "users/:id/add" => "users#add", :as => :users_add
 
   resources :votes
-    get 'votes/:id/listconsti' => 'votes#listconsti', :as => :votes_listconsti
+    get 'votes/:id/listconsti' => 'constituencies#listconsti', :as => :votes_listconsti
 
 
   resources :voivodeships

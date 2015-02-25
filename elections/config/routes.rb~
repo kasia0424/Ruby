@@ -55,7 +55,7 @@ Elections::Application.routes.draw do
 
   resources :committees
 
-  root :to => 'voivodeships#index'#'user_sessions#new'
+  root :to => 'user_sessions#new'#'voivodeships#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

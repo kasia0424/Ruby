@@ -1,9 +1,4 @@
 <p id="notice"><%#= notice %></p>
-Com<% if @committees_voivodeship.committee_id ==nil %>
-0
-<%#.each do |co| %>
-<%#= co %>
-<% end %>
 <p>
   <b>Committee:</b>
   <%= @committees_voivodeship.committee.name %>

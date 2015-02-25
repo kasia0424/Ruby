@@ -32,6 +32,7 @@ class Ability
     if user.role.name == "admin"
       can :manage, :all
       can :destory, Constituency
+	    cannot :create, Vote
     elsif user.role.name == "centralny"
       can :menage, :all
       can :read, Voivodeship
@@ -41,10 +42,12 @@ class Ability
 			can :read, Constituency
 			can :frekwencja, Constituency
 			can :results, Constituency
+      can :invalid, Voivodeship
 			#cannot :edit, Constituency
 			can :read, Vote
 			can :listconsti, Vote
     elsif user.role.name == "okregowy"
+      #can :create, Vote
       can [:read, :edit ], Constituency do |const|
 	      const.try(:user_id) == user
       end

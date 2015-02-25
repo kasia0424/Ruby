@@ -21,4 +21,11 @@ class ApplicationController < ActionController::Base
 #exception.message
     redirect_to users_show_path
   end
+
+#rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+
+#  def record_not_found
+#    flash[:alert] = 'Ten rekord nie istnieje'
+#    redirect_to action: :index
+#  end
 end

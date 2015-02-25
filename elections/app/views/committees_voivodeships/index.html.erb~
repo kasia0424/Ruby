@@ -11,7 +11,7 @@
 
 <% @committees_voivodeships.each do |committees_voivodeship| %>
   <tr>
-    <td><%= committees_voivodeship.committee_id %><br />
+    <td><%= committees_voivodeship.committee.name %><br />
 	<%= link_to 'Voivodeships list', committees_voivodeships_listc_path(:id =>committees_voivodeship.committee_id) %></td>
     <td><%= committees_voivodeship.voivodeship.name %></td>
     <td><%= link_to 'Show committees', committees_voivodeships_listv_path(:id =>committees_voivodeship.voivodeship_id) %></td>

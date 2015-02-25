@@ -24,7 +24,7 @@
   <b>Given cards:</b>
   <%= @constituency.given_cards %> | 
   <% if @left < 0 %>
-    You gave <b><%= -@left %></b> cards too much.
+    You gave about<b><%= -@left %></b> cards too much.
   <% else %>
     <b><%= @left %></b> cards left.
   <% end %>

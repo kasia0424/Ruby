@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
     config.crypted_password_field = :crypted_password
     config.require_password_confirmation = true
   end
-  belongs_to :role
-  belongs_to :constituency
+  has_one :role
+  has_and_belongs_to_one :constituency
 
   def admin?
    self.role.name =="admin"

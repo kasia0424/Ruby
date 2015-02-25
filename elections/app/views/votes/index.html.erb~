@@ -30,5 +30,6 @@
 </table>
 
 <br />
-
+<%# if can? :create, vote %>
 <%= link_to 'New Vote', new_vote_path %>
+<%# end %>
